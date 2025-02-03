@@ -9,10 +9,11 @@ const app = express();
 const port = process.env.PORT || 4000;
 connectDb();
 
+const allowedOrigins = ["http://localhost:5173"];
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // This ensures URL-encoded body parsing
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 // API Endpoint
 app.get("/", (req, res) => res.send("API Working"));
